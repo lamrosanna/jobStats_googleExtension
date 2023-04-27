@@ -1,0 +1,35 @@
+{
+    "manifest_version": 3,
+    "name": "Job Stats Extension",
+    "description": "Google Chrome Extension to log job stats on Google Sheets",
+    "author": "Rosanna",
+    "version": "1.0",
+    "permissions":["identity", "activeTab", "scripting", "notifications"],
+    "background": {
+        "service_worker": "background.js",
+        "type": "module",
+        "persistance": true
+    },
+    "action": {
+        "default_popup": "job_stats.html",
+        "default_title": "Document Job stats"
+    },
+    "oauth2": {
+        "client_id": "", 
+        "scopes":["https://www.googleapis.com/auth/spreadsheets"]
+    },
+    "content_security_policy": {
+        "extension_pages": "default-src 'self';connect-src 'self' https://sheets.googleapis.com"
+    },
+    "icons": {
+        "16": "images/emoji-cat.png"
+    },
+    "content_scripts":[
+        {
+        "matches": ["https://*/*"],
+        "js": ["script.js"]
+        }
+    ]
+
+    
+}  
